@@ -47,7 +47,7 @@ print(data)
 f.close
 '''
 #eg csv project
-
+'''
 import csv
 
 def addData():
@@ -91,3 +91,5 @@ while True:
         checkpercentage()
     else:
         print("invalid")
+'''
+
