@@ -92,4 +92,12 @@ while True:
     else:
         print("invalid")
 '''
+with open("file.txt", "w") as f:
+    f.write("Hello, world!")
+
+with open("file.txt", "r") as f:
+    content = f.read()
+    print(content)
+
+
 
