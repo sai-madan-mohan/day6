@@ -9,14 +9,35 @@
 # sum(1,2)
 
 
-def person(fname,lname,surname = "chalamalasetti"):
-   name= f"my name is {fname} {lname} {surname}"
-   return name
+# def person(fname,lname,surname = "chalamalasetti"):
+#    name= f"my name is {fname} {lname} {surname}"
+#    return name
 
-print(person("sai","madan"))
+# print(person("sai","madan"))
 
-def print_upto_five():
-   for i in range(5):
-        print(i)
+# def print_upto_five():
+#    for i in range(5):
+#         print(i)
 
-print_upto_five()
+# print_upto_five()
+
+dict1 = {"brand":"hundai",
+         "model":"i20",
+         "year": "2020"
+         }
+# print(dict1["model"])
+# print(dict1.get("model2"))
+# dict1["year"]= "2024"
+# print(dict1)
+
+# dict1["place"] = "HYD"
+# print(dict1)
+# del(dict1["model"])
+# print(dict1)
+
+for keys in dict1.keys():
+    print(keys)
+for values in dict1.values():
+    print(values)
+for keys,values in dict1.items():
+    print(f"{keys}:{values}")
