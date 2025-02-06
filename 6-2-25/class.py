@@ -193,9 +193,6 @@
 # print("Thanks for visiting")                  
 
 
-{
-  "userId": 1,
-  "id": 1,
-  "title": "Sample title",
-  "body": "This is the content of the post."
-}
+def wish(name):
+    print( f" happy birthday {name}")
+wish("sai")
