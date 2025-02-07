@@ -1,0 +1,28 @@
+h1 {
+    color: rebeccapurple;
+    text-align: center;
+}
+
+#line {
+    color: rgb(153, 146, 51);
+    text-align: center;
+
+}
+
+.grey {
+    color: rgb(255, 0, 0);
+    text-align: center;
+}
+
+.red{
+    color: red;
+}
+button {
+    color: black;
+    width: 400px;
+    height: 50px;
+    background:wheat;
+    box-sizing: content-box;
+    
+
+}
