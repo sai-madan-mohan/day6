@@ -1,0 +1,44 @@
+h1 {
+    color: darkblue;
+    text-align: center;
+}
+
+p {
+    color: rgb(169, 114, 33);
+    text-align: right;
+}
+
+#divya {
+    color: cadetblue;
+}
+
+#madan {
+    color: cadetblue;
+}
+
+.red_color {
+    color: red;
+}
+
+.blue_color {
+    color: blue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+}
+button {
+    color: red;
+    border-color: aquamarine;
+    height: 20px;
+} 
+#gorre {
+    color: blue;
+    border-color: aquamarine;
+    height: 20px;
+
+}
+.brown{
+    color: rgb(0, 255, 38);
+    border-color: rgb(255, 191, 127);
+    height: 20px;
+
+}

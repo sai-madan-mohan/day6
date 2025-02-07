@@ -193,7 +193,28 @@
 # print("Thanks for visiting")                  
 
 
-def wish(name):
-    print( f" happy birthday {name}")
-wish("sai")
-l
+# def wish(name):
+#     print( f" happy birthday {name}")
+# wish("sai")
+
+
+# squares = {}
+# cubes = {}
+# for i in range(1,11):
+#     squares[i] = i*i
+# print(squares)
+# for i in range(1,11):
+#     cubes[i]=i*i*i
+# print(cubes)
+
+even={}
+odd={}
+for i in range(1,11):
+    if i%2==0:
+     even[i]=i*i
+print(even)
+for i in range(1,11):
+    if i%2==0:
+     continue     
+    odd[i]=i*i*i
+print(odd)
