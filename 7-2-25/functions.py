@@ -43,9 +43,10 @@
 
 #eg5
 
-def convertingseconds(seconds):
-    hours = seconds//3600
-    minutes = (seconds%3600)//60
-    remainingseconds = seconds%60
-    return f"{hours} hours ,{minutes} minutes , {remainingseconds} seconds"
-print(convertingseconds(3661))
+# def convertingseconds(seconds):
+#     hours = seconds//3600
+#     minutes = (seconds%3600)//60
+#     remainingseconds = seconds%60
+#     return f"{hours} hours ,{minutes} minutes , {remainingseconds} seconds"
+# print(convertingseconds(3661))
+
