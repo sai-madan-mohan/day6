@@ -37,16 +37,38 @@
 # print(dict1)
 
 
-list1 = [1,2,3,4,5]
-list1.append(5)
-print(list1)
+# list1 = [1,2,3,4,5]
+# list1.append(5)
+# print(list1)
 
 
-set1 = {1,2,3,4,5}
-set1.add(5)
-print(set1)
+# set1 = {1,2,3,4,5}
+# set1.add(5)
+# print(set1)
 
-tuple1 = (1,2,3,4,5)
-tuple1.append(5)
-print(tuple1)
+# tuple1 = (1,2,3,4,5)
+# tuple1.append(5)
+# print(tuple1)
 
+
+# class person:
+#     def __init__(self,name,age,location):
+#         self.name = name
+#         self.age = age
+#         self.location = location
+#     def introduce(self):
+#         return f" Hi my name is {self.name} and iam from {self.location}{self.age}"
+    
+# p1 = person("sai",25,"Bezavada")
+
+# print(p1.introduce())
+
+# class Car:
+#     def __init__(self, brand, model):
+#         self.brand = brand
+#         self.model = model
+    
+#     def display_info(self):
+#         return f"{self.brand} {self.model}"
+# c1 = Car("ford",2024)
+# print(c1.display_info())
