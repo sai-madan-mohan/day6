@@ -37,16 +37,16 @@
 # print(dict1)
 
 
-# list1 = [1,2,3,4,5]
-# list1.append(5)
-# print(list1)
+list1 = [1,2,3,4,5]
+list1.append(5)
+print(list1)
 
 
-# set1 = {1,2,3,4,5}
-# set1.add(5)
-# print(set1)
+set1 = {1,2,3,4,5}
+set1.add(5)
+print(set1)
 
-# tuple1 = (1,2,3,4,5)
-# tuple1.append(5)
-# print(tuple1)
+tuple1 = (1,2,3,4,5)
+tuple1.append(5)
+print(tuple1)
 
