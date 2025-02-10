@@ -5,3 +5,5 @@
 # x=["today","tom","yest"]
 # print(type(x))
 
+import math
+print(math.floor(3.8))
