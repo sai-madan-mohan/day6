@@ -30,8 +30,23 @@
 # print(list1)
 
 
-dict1 = {"brand" : "Ford",
-         "Model" : "Mustang",
-         "Year"  : 2024}
+# dict1 = {"brand" : "Ford",
+#          "Model" : "Mustang",
+#          "Year"  : 2024}
+# dict1["location"] = "Delhi"
+# print(dict1)
 
-print(dict1.get("Year"))
+
+# list1 = [1,2,3,4,5]
+# list1.append(5)
+# print(list1)
+
+
+# set1 = {1,2,3,4,5}
+# set1.add(5)
+# print(set1)
+
+# tuple1 = (1,2,3,4,5)
+# tuple1.append(5)
+# print(tuple1)
+
