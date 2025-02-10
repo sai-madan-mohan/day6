@@ -72,3 +72,4 @@
 #         return f"{self.brand} {self.model}"
 # c1 = Car("ford",2024)
 # print(c1.display_info())
+
