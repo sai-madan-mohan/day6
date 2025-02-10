@@ -14,14 +14,13 @@
 
 # list3 = list1 + list2+list4
 # print(list3)
-mylist = ['apple', 'banana', 'cherry']
-i = 0
-while i < len(mylist):
-  print(mylist[i])
-  i = i + 1
 
 
-
+# mylist = ['apple', 'banana', 'cherry']
+# i = 0
+# while i < len(mylist):
+#   print(mylist[i])
+#   i = i + 1
 
 # list1 = ["a", "b" , "c"]
 # list2 = [1, 2, 3]
@@ -29,3 +28,10 @@ while i < len(mylist):
 # for x in list2:
 #     list1.append(x)
 # print(list1)
+
+
+dict1 = {"brand" : "Ford",
+         "Model" : "Mustang",
+         "Year"  : 2024}
+
+print(dict1.get("Year"))
