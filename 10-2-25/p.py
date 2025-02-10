@@ -5,5 +5,12 @@
 # x=["today","tom","yest"]
 # print(type(x))
 
-import math
-print(math.floor(3.8))
+# import math
+# print(math.floor(3.8))
+
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
+list4 = ["sai",23,3.5]
+
+list3 = list1 + list2+list4
+print(list3)
