@@ -1,0 +1,19 @@
+body { 
+    background-color:rgb(255, 68, 0);
+}
+
+h1 {
+    
+    text-align: center;
+}
+
+p {color: black;
+text-align: center;}
+
+button {border-color: red;}
+
+input {
+    align-items: center;
+}
+
+table{ background: white;}
