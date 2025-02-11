@@ -30,3 +30,31 @@
 # ninja = character(400,500,250)
 # print(warrior.warriorinfo())
 # print(ninja.warriorinfo())
+
+
+#class methods
+
+class student:
+    count = 0
+    totalgpa = 0
+    def __init__(self,name,gpa):
+        self.name = name
+        self.gpa = gpa
+        student.count += 1
+        student.totalgpa +=1
+
+    def getinfo(self):
+        return f" {self.name} {self.gpa} "
+    @classmethod
+    def getcount(cls):
+        return f"total # students  :  {cls.count}"
+    
+    @classmethod
+    def countgpa(cls):
+        return f"Total GPA : {cls.totalgpa}"
+s1 = student("Sai",3.2)
+s2 = student("Madan",3.8)
+s3 = student("Mohan",4.8)
+
+print(student.getcount())
+print(student.countgpa())
