@@ -18,3 +18,15 @@
 
 # print(add(2,2))
 # print(add(4,2))
+
+# class character:
+#     def __init__(self,health,damage,speed):
+#         self.health = health
+#         self.damage = damage
+#         self.speed = speed
+#     def warriorinfo(self):
+#         return f"character has {self.health} health and have {self.speed} speed and he can damage {self.damage} "
+# warrior = character(400,300,250)
+# ninja = character(400,500,250)
+# print(warrior.warriorinfo())
+# print(ninja.warriorinfo())
