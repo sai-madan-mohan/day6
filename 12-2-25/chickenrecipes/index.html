@@ -16,7 +16,8 @@
             display: flex;
             justify-content: center;
             align-items: stretch;
-            height: 100vh; /* Full screen height */
+            height: 120vh; /* Full screen height */
+            gap :1px;
         }
 
         .ingredients, .instructions {
@@ -41,12 +42,21 @@
             padding: 15px;
             margin: 10px auto;
             width: 80%;
-            border-radius: 10px;
+            border-radius: 50px;
             font-size: 18px;
             font-weight: bold;
             color: #333;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
         }
+        
+        .box:nth-child(odd) {
+    background-color: #ffccbc;
+}
+
+.box:nth-child(even) {
+    background-color: #b3e5fc;
+}
+
 
         h2 {
             text-align: center;
@@ -54,10 +64,15 @@
             background: #000;
             color:white;
         }
+        .curryimage{
+            height: fit-content;
+        
+        }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">🐔Preparing spicy chicken🐔</h1>
+    <h1 style="text-align: center; background: rgb(255, 115, 0);">🐔Preparing spicy chicken🐔</h1>
+    
 
     <div class="container">
         <!-- Ingredients Section -->
@@ -68,9 +83,14 @@
             <div class="box">🍅 Tomatoes</div>
             <div class="box">🧄 Garlic</div>
             <div class="box">🌿 Spices</div>
-            <div class="box"> 💧Oil</div>
+            <div class="box">💧 Oil</div>
             <div class="box">🧂 Salt</div>
+            <div class="curryimage">
+            
+                <img src="./rawpic.jpg" alt="curry" style="height:max-content;">
+            </div>
         </div>
+       
 
         <!-- Instructions Section -->
         <div class="instructions">
@@ -84,8 +104,14 @@
             <div class="box">7. Add chicken and spices.</div>
             <div class="box">8. Simmer for 20 minutes.</div>
             <div class="box">9. Serve hot with rice!</div>
+            <div class="curryimage">
+            
+                <img src="./chicken.jpg" alt="curry" style="height:max-content;">
+            </div>
         </div>
     </div>
+  
+
 
 </body>
 </html>
