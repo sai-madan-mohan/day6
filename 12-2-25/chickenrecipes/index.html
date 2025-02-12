@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +17,28 @@
             display: flex;
             justify-content: center;
             align-items: stretch;
-            height: 120vh; /* Full screen height */
-            gap :1px;
+            height: 120vh;
+            /* Full screen height */
+            gap: 1px;
         }
 
-        .ingredients, .instructions {
-            flex: 1; /* Equal width */
+        .ingredients,
+        .instructions {
+            flex: 1;
+            /* Equal width */
             padding: 20px;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .ingredients {
-            background-color: #ffcc80; /* Orange background */
+            background-color: #ffcc80;
+            /* Orange background */
             text-align: center;
         }
 
         .instructions {
-            background-color: #90caf9; /* Blue background */
+            background-color: #90caf9;
+            /* Blue background */
             text-align: center;
         }
 
@@ -48,35 +54,46 @@
             color: #333;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .box:nth-child(odd) {
-    background-color: #ffccbc;
-}
 
-.box:nth-child(even) {
-    background-color: #b3e5fc;
-}
+        .box:nth-child(odd) {
+            background-color: #ffccbc;
+        }
+
+        .box:nth-child(even) {
+            background-color: #b3e5fc;
+        }
 
 
         h2 {
             text-align: center;
             width: auto;
             background: #000;
-            color:white;
+            color: white;
         }
-        .curryimage{
+
+        .curryimage {
             height: fit-content;
-        
+
+        }
+
+        a {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            color: brown;
+            size: 40px;
         }
     </style>
 </head>
+
 <body>
     <h1 style="text-align: center; background: rgb(255, 115, 0);">🐔Preparing spicy chicken🐔</h1>
-    
+
 
     <div class="container">
         <!-- Ingredients Section -->
         <div class="ingredients">
+
             <h2>Ingredients</h2>
             <div class="box">🍗 Chicken</div>
             <div class="box">🧅 Onions</div>
@@ -86,11 +103,11 @@
             <div class="box">💧 Oil</div>
             <div class="box">🧂 Salt</div>
             <div class="curryimage">
-            
+
                 <img src="./rawpic.jpg" alt="curry" style="height:max-content;">
             </div>
         </div>
-       
+
 
         <!-- Instructions Section -->
         <div class="instructions">
@@ -105,13 +122,12 @@
             <div class="box">8. Simmer for 20 minutes.</div>
             <div class="box">9. Serve hot with rice!</div>
             <div class="curryimage">
-            
+
                 <img src="./chicken.jpg" alt="curry" style="height:max-content;">
             </div>
         </div>
     </div>
-  
-
-
+    <a href="./chickenrecipe.html" id="instruction">Curry Instructions</a>
 </body>
+
 </html>
