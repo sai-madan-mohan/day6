@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 100vh; /* Full screen height */
+        }
+
+        .ingredients, .instructions {
+            flex: 1; /* Equal width */
+            padding: 20px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ingredients {
+            background-color: #ffcc80; /* Orange background */
+            text-align: center;
+        }
+
+        .instructions {
+            background-color: #90caf9; /* Blue background */
+            text-align: center;
+        }
+
+        .box {
+            background-color: white;
+            border: 2px solid black;
+            padding: 15px;
+            margin: 10px auto;
+            width: 80%;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            width: auto;
+            background: #000;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">🐔Preparing spicy chicken🐔</h1>
+
+    <div class="container">
+        <!-- Ingredients Section -->
+        <div class="ingredients">
+            <h2>Ingredients</h2>
+            <div class="box">🍗 Chicken</div>
+            <div class="box">🧅 Onions</div>
+            <div class="box">🍅 Tomatoes</div>
+            <div class="box">🧄 Garlic</div>
+            <div class="box">🌿 Spices</div>
+            <div class="box"> 💧Oil</div>
+            <div class="box">🧂 Salt</div>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <div class="box">1. Cut the chicken into pieces.</div>
+            <div class="box">2. Chop onions and tomatoes.</div>
+            <div class="box">3. Heat oil in a pan.</div>
+            <div class="box">4. Add garlic and ginger paste.</div>
+            <div class="box">5. Cook onions until golden brown.</div>
+            <div class="box">6. Add tomatoes and cook well.</div>
+            <div class="box">7. Add chicken and spices.</div>
+            <div class="box">8. Simmer for 20 minutes.</div>
+            <div class="box">9. Serve hot with rice!</div>
+        </div>
+    </div>
+
+</body>
+</html>
