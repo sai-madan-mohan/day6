@@ -1,0 +1,222 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load app_filters %}
+{% block title %}Admin | {{block.super}}{% endblock %}
+{% block content %}
+{% load pagination_tags %}
+
+<div class="content-page">
+	<div class="content">
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="page-title-box">
+						<h4 class="page-title float-left">Progress Report</h4>
+
+						<ol class="breadcrumb float-right">
+							<!--    <li class="breadcrumb-item"><a href="{% url 'yoshimitsujpinfy:admin_dashboard' %}">Dashboard</a></li>-->
+							<li class="breadcrumb-item active">Progress Report</li>
+						</ol>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+            {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-success">{{ message }}</div>
+                {% else %}
+                <div class="alert alert-danger">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="card-box">
+
+						<hr>
+
+                        <form action="{% url 'yoshimitsujpinfy:admin_progress_report' %}" method="get">
+
+                            <div class="row m-b-20">
+            
+                                <div class=" col-md-4">
+            
+                                <select class="form-control  selectCourse " style="width:100%;" name="course_searched">
+            
+                                        <option value=""></option>
+            
+                                        {% for search in Search_Courses %}
+            
+                                            <option value="{{ search.name }}">{{ search.name }}</option>
+            
+                                        {% endfor %}
+            
+                                 </select>
+                                 
+                                </div>
+            
+                                <div class="col-md-2">
+            
+                                    <button type="submit" class="btn btn-primary  btn-sm" ><i class="fa fa-search"></i> Search</button>
+            
+                                </div>
+            
+                            </div>
+            
+                          </form>
+
+						<hr>
+
+						<form action="{% url 'yoshimitsujpinfy:admin_progress_report' %}" method="get">
+
+									<div class="row m-b-20">
+
+										<div class=" col-md-2">
+											<input type="text" class="form-control datepicker-autoclose" placeholder="mm/dd/yyyy"
+									 id="from_date_id" name="from_date" value="{{ request.GET.from_date }}" required {% if request.GET.from_date and request.GET.to_date %}readonly{% endif %}>
+										</div>
+
+										<div class=" col-md-2">
+											<input type="text" class="form-control datepicker-autoclose" placeholder="mm/dd/yyyy"
+									 id="to_date_id" name="to_date" value="{{ request.GET.to_date }}" required {% if request.GET.from_date and request.GET.to_date %}readonly{% endif %}>
+										</div>
+
+										<div class="col-md-2">
+
+									{% if request.GET.from_date and request.GET.to_date %}
+										<button type="button" class="btn btn-secondary btn-sm" id="goBackButtonDate"><i class="fa fa-arrow-left"></i> Go Back</button>						
+									{% else %}
+
+								  			<button type="submit" class="btn btn-primary  btn-sm" ><i class="fa fa-search"></i> Search</button>
+
+									{% endif %}
+										</div>
+
+									</div>
+
+								</form>
+
+
+						<div class="row">
+
+						</div>
+
+						<div class="row m-b-20">
+							<div class=" col-md-12">
+
+
+								
+
+								<table class="table table-bordered table-sm" width="100%">
+									<thead>
+										<tr>
+											<th width="2%">S.No.</th>
+											<th width="20%">Course Name</th>
+											<th width="5%">Start Date</th>
+											<th width="5%">Participant Name</th>
+											<th width="5%">Total Session Happened</th>
+											<th width="5%">Total Session Attended</th>
+											<th width="5%">Attendance Percentage</th>
+											<th width="5%">No.of Assignment Assigned</th>
+											<th width="5%">No.of Assignment Attempted</th>
+											<th width="5%">No.of Assignment Assigned</th>
+											<th width="5%">No.of Assignment Attempted</th>
+											<th width="5%">Total Course Assigned</th>
+											<th width="25%">Overall Rating:stars of 5 out of whichAI can select the overall rating </th>
+										</tr>
+									</thead>
+									<tbody>
+
+										{% for course in ActiveCourses.object_list %}
+										<tr>
+											<td>{{ ActiveCourses.start_index|add:forloop.counter0 }}</td>
+											<td><a href="{% url 'yoshimitsujpinfy:admin_course_information' %}?course_id_selected={{course.id}}" target="_blank">{{course.name}}</a></td>
+											<td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+
+										</tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+
+
+<!--                                <h6 class="m-t-30 m-b-30 text-center">  <i class="fa fa-warning text-warning"></i> <span class="text-muted">Please Select Month and Year</span></h6>-->
+
+							</div>
+
+							<div class="text-center mb-3">
+								<div class="course-pagination ">
+								   <ul class="pagination">
+									{% autoescape off %}
+									{% paginate_with_params ActiveCourses %}
+									{% endautoescape %}
+									 </ul>
+								</div>
+							 </div>
+	 
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<script>
+       
+
+
+    $(document).ready(function(){
+               jQuery('.datepicker-autoclose').datepicker({
+              autoclose: true,
+              todayHighlight: true
+           });
+
+           });
+
+    $(document).ready(function() {
+        $('.selectCourse').select2({
+             selectOnClose: true,
+             minimumInputLength: 2,
+             allowClear: true,
+             placeholder:"Course Name"
+        });
+    });
+    
+ 
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const goBackButtonDate = document.getElementById('goBackButtonDate');
+        if (goBackButtonDate) {
+            goBackButtonDate.addEventListener('click', function () {
+                // Redirect to the base URL (clear filters)
+                window.location.href = "{% url 'yoshimitsujpinfy:admin_progress_report' %}";
+            });
+        }
+    });
+</script>
+
+{% endblock %}
