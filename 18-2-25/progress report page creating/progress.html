@@ -77,13 +77,10 @@
 
 										<div class=" col-md-2">
 											<input type="text" class="form-control datepicker-autoclose" placeholder="mm/dd/yyyy"
-									 id="from_date_id" name="from_date" value="{{ request.GET.from_date }}" required {% if request.GET.from_date and request.GET.to_date %}readonly{% endif %}>
+									 id="from_date_id" name="from_date" value="{{ request.GET.from_date }}" required {% if request.GET.from_date  %}readonly{% endif %}>
 										</div>
 
-										<div class=" col-md-2">
-											<input type="text" class="form-control datepicker-autoclose" placeholder="mm/dd/yyyy"
-									 id="to_date_id" name="to_date" value="{{ request.GET.to_date }}" required {% if request.GET.from_date and request.GET.to_date %}readonly{% endif %}>
-										</div>
+										
 
 										<div class="col-md-2">
 
@@ -92,7 +89,7 @@
 									{% else %}
 
 								  			<button type="submit" class="btn btn-primary  btn-sm" ><i class="fa fa-search"></i> Search</button>
-
+Hey, Cortana. 
 									{% endif %}
 										</div>
 
@@ -135,8 +132,8 @@
 										<tr>
 											<td>{{ ActiveCourses.start_index|add:forloop.counter0 }}</td>
 											<td><a href="{% url 'yoshimitsujpinfy:admin_course_information' %}?course_id_selected={{course.id}}" target="_blank">{{course.name}}</a></td>
-											<td></td>
-                                            <td></td>
+											<td>{{course.get_course_active_batch.live_class_from|date:'d M Y'}}</td>
+                                            <td>{{ usercourse.user.first_name }} {{ usercourse.user.last_name }}</td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -174,7 +171,7 @@
 
 
 				</div>
-
+                
 
 
 
