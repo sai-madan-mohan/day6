@@ -1,0 +1,721 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title %}Admin | {{block.super}}{% endblock %}
+{% block content %}
+
+            <div class="content-page">
+                <div class="content">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title float-left">Course Request Details </h4>
+										<ol class="breadcrumb float-right">
+<!--                                        <li class="breadcrumb-item"><a href="{% url 'yoshimitsujpinfy:admin_dashboard' %}">Dashboard</a></li>-->
+										 <li class="breadcrumb-item"><a href="{% url 'yoshimitsujpinfy:admin_sales_course_request' %}">New Course Request</a></li>
+                                        <li class="breadcrumb-item active">Course Request Details </li>
+                                    </ol>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+						{% if messages %}
+                            {% for message in messages %}
+							{% if message.tags == 'success' %}
+                                <div class="alert alert-success">{{ message }}</div>
+							{% else %}
+								<div class="alert alert-danger">{{ message }}</div>
+							{% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+						<div class="row">
+                            <div class="col-md-12">
+
+                                <div class="card-box">
+								<div class="row">
+                            <div class="col-md-6">
+							<a class="btn btn-dark btn-lg" href="{% url 'yoshimitsujpinfy:admin_sales_course_request' %}"><i class="zmdi zmdi-caret-left-circle"></i> Back to New Course Request</a>
+							</div>
+
+							</div>
+
+
+								</div>
+								</div>
+								</div>
+						<div class="row">
+                            <div class="col-md-12">
+
+                                <div class="card-box">
+
+								<form action="{% url 'yoshimitsujpinfy:admin_sales_create_course_request' %}" id="courseRequestForm" method="post"  enctype="multipart/form-data">
+
+									{% csrf_token %}
+
+									<div class="mt-2">
+										<div class="form-group row">
+											<label for="AddDate" class="col-lg-2 col-form-label">Course Requisition Date <span class='text-red'>*</span></label>
+											<div class="col-lg-6">
+											 <input type="text" class="form-control datepicker-autoclose" placeholder="mm/dd/yyyy" name="course_requisition_date">
+											</div>
+										</div>
+
+								   <div class="form-group row">
+                                        <label for="CourseName" class="col-lg-2 col-form-label">Course Name <span class="text-red">*</span></label>
+                                        <div class="col-lg-6">
+                                          <input type="text" name="name" class="form-control" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="course_type" class="col-lg-2 col-form-label">Course Vareiant<span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="vareiant" id="vareiant">
+
+                                               <option value="1-on-1">1-on-1 </option>
+                                               <option value="group"> group </option>
+
+                                           </select>
+
+                                        </div>
+                                    </div>
+
+								
+                                    <div class="form-group row">
+                                        <label for="CourseCategory" class="col-lg-2 col-form-label">Course Region <span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="region">
+											   		{% for region in course_region %}
+                                                        <option value="{{ region.id }}">{{region.name}}</option>
+											   	     {% endfor %}
+
+                                                    </select>
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                    <div class="form-group row">
+                                        <label for="CourseCategory" class="col-lg-2 col-form-label">Marketing <span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="course_marketing">
+
+											   		{% for marketing in course_marketing %}
+
+                                                        <option value="{{ marketing.id }}">{{ marketing.name }}</option>
+
+											   	     {% endfor %}
+
+                                                    </select>
+
+                                        </div>
+
+
+                                    </div>
+
+															
+                                    <div class="form-group row">
+                                        <label for="lead_type" class="col-lg-2 col-form-label">Lead Type<span class="text-red">*</span></label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="lead_type" id="lead_type">
+                                               <option value="B2B">B2B</option>
+                                               <option value="B2C"> B2C </option>
+                                           </select>
+
+                                        </div>
+                                    </div>
+									<div class="form-group row">
+                                        <label for="async_course_id" class="col-lg-2 col-form-label">Is Async Course </label>
+                                        <div class="col-lg-6 mt-1">
+                                          <div class="checkbox checkbox-primary">
+                                                            <input id="async_course_id" name="is_course_async" type="checkbox">
+                                                            <label for="async_course_id">Yes</label>
+
+                                                        </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="CourseCategory" class="col-lg-2 col-form-label">Course Category </label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="course_category">
+
+											   		{% for category in CourseCategories %}
+
+                                                        <option value="{{ category.id }}">{{ category.name }}</option>
+
+											   	     {% endfor %}
+
+                                                    </select>
+
+                                        </div>
+
+
+                                    </div>
+
+
+										{% if businessClients %}
+
+									<div class="form-group row">
+                                        <label for="LabelBusinessClient" class="col-lg-2 col-form-label">Business Client </label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="business_client">
+
+											   <option value="">Select Business Client</option>
+
+											   		{% for clients in businessClients %}
+
+                                                        <option value="{{ clients.id }}">{{ clients.name }}</option>
+
+											   	     {% endfor %}
+
+                                                    </select>
+                                        </div>
+                                    </div>
+
+										{% endif %}
+
+                                    <div class="form-group row">
+                                        <label for="course_type" class="col-lg-2 col-form-label">Course Type <span class="text-red">*</span></label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="fee_frequency" id="fee_frequency">
+
+                                               <option value="Onetime"> Onetime </option>
+                                               <option value="Monthly"> Monthly </option>
+
+                                           </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="Duration" class="col-lg-2 col-form-label">Session Per Month </label>
+                                        <div class="col-lg-3">
+										<div class="input-group">
+
+											<input type="number" min="0" name="session_per_month">
+										  </div>
+
+                                        </div>
+
+                                    </div>
+
+									<div class="form-group row">
+                                        <label for="CourseDescription" class="col-lg-2 col-form-label">Course Description </label>
+                                        <div class="col-lg-6">
+											<textarea type="text" class="form-control" rows="8" cols="60" name="course_desc"></textarea>
+                                        </div>
+                                    </div>
+
+									<div class="form-group row">
+                                        <label for="Duration" class="col-lg-2 col-form-label">Duration (in Hours) <span class="text-red">*</span> </label>
+                                        <div class="col-lg-3">
+										<div class="input-group">
+
+											<input type="number" min="0" name="duration">
+										  </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+									<div class="form-group row">
+                                        <label for="CourseCoverImage" class="col-lg-2 col-form-label">Course Content File </label>
+
+									<div class="col-lg-6">
+								        <input type="file" id="content_file" name="content_file">
+
+								    </div>
+
+								    </div>
+                                    
+									<div class="form-group row">
+                                        <label for="Degree" class="col-lg-2 col-form-label">Course Fee without Discount</label>
+                                        <div class="col-lg-6">
+                                          <input type="number" name="fee" class="form-control">
+
+                                        </div>
+                                    </div>
+
+									<div class="form-group row">
+                                        <label for="Degree" class="col-lg-2 col-form-label">Course Discount % </label>
+                                        <div class="col-lg-6">
+                                          <input type="number" name="discount_percentage" class="form-control">
+
+                                        </div>
+                                    </div>
+									
+                                    <div class="form-group row">
+                                        <label for="course_type" class="col-lg-2 col-form-label">Fee Status<span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="course_fee_status" id="course_fee_status">
+
+                                               <option value="Paid"> Paid </option>
+                                               <option value="Unpaid"> Unpaid </option>
+
+                                           </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <!-- Instructor Fee -->
+                                        <label for="CourseName" class="col-lg-2 col-form-label">Instructor Fee</label>
+                                        <div class="col-lg-3">
+                                            <input type="text" name="instructor_fee" class="form-control" placeholder="Enter Fee" required>
+                                        </div>
+                                    
+                                        <!-- Instructor Fee Type -->
+                                        <div class="col-lg-3">
+                                            <select class="form-control" name="instructor_fee_type">
+                                                <option value="">Select Fee Type</option>
+                                                {% for fee in instructor_fee %}
+                                                <option value="{{ fee.id }}">{{ fee.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="AddDate" class="col-lg-2 col-form-label">Course Start Date<span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                         <input type="text" class="form-control datepicker-autoclose" placeholder="mm/dd/yyyy" name="start_date">
+                                        </div>
+                                    </div>
+
+                                    <div id="session-container">
+                                        <div class="session-block">
+                                            <div class="form-group row session-row">
+                                                <label for="session_start_time" class="col-lg-2 col-form-label">Session Start Time<span class='text-red'>*</span></label>
+                                                <div class="col-lg-6">
+                                                    <input type="time" class="form-control" name="session_start_time[]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row session-row">
+                                                <label for="session_end_time" class="col-lg-2 col-form-label">Session End Time<span class='text-red'>*</span></label>
+                                                <div class="col-lg-6">
+                                                    <input type="time" class="form-control" name="session_end_time[]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row session-row">
+                                                <label class="col-lg-2 col-form-label">Session Schedule Day<span class='text-red'>*</span></label>
+                                                <div class="col-lg-8 form-inline">
+                                                    <!-- Days checkboxes -->
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Monday" type="checkbox" value="Monday" name="session_multiple_days[0][]">
+                                                        <label for="Monday">Monday</label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Tuesday" type="checkbox" value="Tuesday" name="session_multiple_days[0][]">
+                                                        <label for="Tuesday">Tuesday</label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Wednesday" type="checkbox" value="Wednesday" name="session_multiple_days[0][]">
+                                                        <label for="Wednesday">Wednesday</label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Thursday" type="checkbox" value="Thursday" name="session_multiple_days[0][]">
+                                                        <label for="Thursday">Thursday</label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Friday" type="checkbox" value="Friday" name="session_multiple_days[0][]">
+                                                        <label for="Friday">Friday</label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Saturday" type="checkbox" value="Saturday" name="session_multiple_days[0][]">
+                                                        <label for="Saturday">Saturday</label>
+                                                    </div>
+                                                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                                                        <input id="Sunday" type="checkbox" value="Sunday" name="session_multiple_days[0][]">
+                                                        <label for="Sunday">Sunday</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div id="session-container"></div>
+
+                                    <!-- Main Add Session Button -->
+                                    <div class="col-lg-6 offset-lg-2 mb-3">
+                                        <button id="main-add-button" type="button" class="btn btn-primary" onclick="addSessionBlock()">Add Session</button>
+                                    </div>
+
+							       
+                                    <div class="form-group row">
+                                        <label for="instructorDropdown" class="col-lg-2 col-form-label">Instructor for the Course<span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                            <select id="instructorDropdown" class="form-control selectInstructor" name="instructor">
+                                                <option value="">Select Instructor</option>
+                                                {% for instructor in Instructors %}
+                                                <option value="{{ instructor.id }}">{{ instructor.first_name }} {{ instructor.last_name }} - {{ instructor.email }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="relationshipManager" class="col-lg-2 col-form-label">Relationship Manager<span class='text-red'>*</span></label>
+                                        <div class="col-lg-6">
+                                            <!-- Hidden field to store the assigned relationship manager ID -->
+                                            <input type="hidden" name="instructor_relationship_manager" id="batchid">
+                                            
+                                            <!-- Input field to display the assigned relationship manager -->
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   value="Please select instructor first" 
+                                                   id="batchname" 
+                                                   name="instructor_relationship_manager" 
+                                                   readonly>
+                                            
+                                            <!-- Dropdown for selecting a new relationship manager (Initially hidden) -->
+                                            <select id="relationshipManagerSelect" 
+                                                    class="form-control" 
+                                                    name="instructor_relationship_manager" 
+                                                    style="display:none;" 
+                                                    >
+                                                <option value="">Select Relationship Manager</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+									<div class="form-group row">
+                                        <label for="Degree" class="col-lg-2 col-form-label">Requested To</label>
+                                        <div class="col-lg-6">
+                                           <select class="form-control" name="content_writer_assigned" >
+
+											   <option value=""> please select content staff to request course </option>
+
+											   		{% for staff in Staffs %}
+
+                                                        <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }} - {{ staff.email }}</option>
+
+											   	     {% endfor %}
+
+                                                    </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="SalesPersonEmail" class="col-lg-2 col-form-label">Sales Person Email<span></span></label>
+                                        <div class="col-lg-6">
+                                          <input type="email" class="form-control " id="sales_person_email" name="sales_person_email">
+                                        </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="SalesManagerEmail" class="col-lg-2 col-form-label">Sales Manager Email<span></span></label>
+                                    <div class="col-lg-6">
+                                      <input type="email" class="form-control " id="sales_manager_email" name="sales_manager_email">
+                                    </div>
+                                </div>
+
+									<div class="form-group row">
+                                        <label for="participant_user" class="col-lg-2 col-form-label">Participant Details </label>
+                                        <div class="col-lg-6">
+											<textarea type="text" class="form-control" rows="8" cols="85" name="participant_user"></textarea>
+                                        </div>
+                                    </div>
+									<div class="form-group row">
+                                        <label for="CourseCoverImage" class="col-lg-2 col-form-label">Bulk Participant File </label>
+
+									<div class="col-lg-6">
+								        <input type="file" id="bulk_participant_file" name="bulk_participant_file">
+
+								    </div>
+
+								    </div>
+									<div class="form-group row">
+                                        <label for="no_of_participant" class="col-lg-2 col-form-label">Number Of Participant</label>
+                                        <div class="col-lg-3">
+										<div class="input-group">
+
+											<input type="number" min="0" name="no_of_participant">
+										  </div>
+
+                                        </div>
+
+                                    </div>
+                                    
+									<div class="form-group row">
+                        				<label for="SessionRepeat" class="col-lg-2 col-form-label">TimeZone</label>
+                        				<div class="col-lg-6">
+                            			<select class="form-control" id="timezone" name="timezone">
+                                			<option value="Asia/Kolkata">Asia/Kolkata</option>
+                               	 			<option value="America/New_York">America/New_York</option>
+                                			<option value="America/Chicago">America/Chicago</option>
+                                			<option value="Asia/Colombo">Asia/Colombo</option>
+                                			<option value="Europe/London">Europe/London</option>
+                                			<option value="Europe/Paris">Europe/Paris</option>
+                                			<option value="Australia/Sydney">Australia/Sydney</option>
+                                			<option value="CET">CET</option>
+                                			<option value="America/Mexico_City">America/Mexico_City</option>
+
+                            			</select>
+                        				</div>
+                    				</div>
+                                    <div class="form-group row">
+                                        <label for="CourseComments" class="col-lg-2 col-form-label">Comments </label>
+                                        <div class="col-lg-6">
+											<textarea type="text" class="form-control" rows="8" cols="85" name="course_comments"></textarea>
+                                        </div>
+                                    </div>
+				
+									<hr>
+									<div class="text-center m-t-30 col-lg-7">
+										<button type="submit" id="submitButton" class="btn btn-danger btn-lg">Save</button>
+										<a href="{% url 'yoshimitsujpinfy:admin_sales_course_request' %}">
+											<button type="button" class="btn btn-secondary btn-lg">Cancel</button>
+										</a>
+									</div>
+
+								</form>
+
+									</div>
+
+
+								   </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+					</div>
+
+<script type="text/javascript">
+
+			 $(document).ready(function () {
+
+			 jQuery('.timepicker').timepicker({
+        minuteStep: 15,
+        showMeridian: !1,
+        icons: {
+            up: 'zmdi zmdi-chevron-up',
+            down: 'zmdi zmdi-chevron-down'
+        }
+    });
+
+	});
+
+
+        </script>
+		<script>
+
+        $(document).ready(function () {
+
+    jQuery(".summernote").summernote( {
+	  callbacks: {
+		onPaste(e) {
+		  const bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+		  e.preventDefault();
+		  document.execCommand('insertText', false, bufferText);
+		}
+	  },
+	   toolbar: [
+
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+	['view', ['fullscreen', 'codeview']],
+    ['para', ['ul', 'ol', 'paragraph']]
+
+	],
+
+	height: 200, minHeight: null, maxHeight: null, focus: !0
+
+    });
+
+
+		jQuery('.datepicker-autoclose').datepicker({
+			autoclose: true,
+			todayHighlight: true
+		});
+        jQuery(".clockpicker").clockpicker({
+            donetext: "Done"
+        });
+
+
+	});
+
+
+		$(document).ready(function() {
+				$('.selectInstructor').select2({
+					 selectOnClose: true,
+					 minimumInputLength: 2,
+					 allowClear: true,
+					 placeholder:"Search Instructor"
+				});
+			});
+
+			$(function() {
+                $("#course_type_select").change(function() {
+                    $("#session_month_div").toggle();
+                });
+            });
+
+		</script>
+
+<script>
+    document.getElementById('courseRequestForm').addEventListener('submit', function(event) {
+        var submitButton = document.getElementById('submitButton');
+
+        // Disable the submit button to prevent multiple clicks
+        if (!submitButton.disabled) {
+            submitButton.disabled = true;
+
+            // Optionally change the button text to indicate submission
+            submitButton.textContent = 'Submitting...';
+        } else {
+            // If already disabled, prevent the form from being submitted again
+            event.preventDefault();
+        }
+    });
+</script>  
+
+
+
+<script>
+    function addSessionBlock() {
+        const sessionContainer = document.getElementById('session-container');
+        const mainAddButton = document.getElementById('main-add-button');
+        
+        // Hide the main Add Session button when a new session block is added
+        mainAddButton.style.display = 'none';
+    
+        // Create a new session block
+        const newSessionBlock = document.createElement('div');
+        newSessionBlock.classList.add('session-block');
+        const sessionIndex = sessionContainer.children.length; // Get the index of the new session block
+        newSessionBlock.innerHTML = `
+            <div class="form-group row session-row">
+                <label for="session_start_time" class="col-lg-2 col-form-label">Session Start Time</label>
+                <div class="col-lg-6">
+                    <input type="time" class="form-control" name="session_start_time[]">
+                </div>
+            </div>
+            <div class="form-group row session-row">
+                <label for="session_end_time" class="col-lg-2 col-form-label">Session End Time</label>
+                <div class="col-lg-6">
+                    <input type="time" class="form-control" name="session_end_time[]">
+                </div>
+            </div>
+            <div class="form-group row session-row">
+                <label class="col-lg-2 col-form-label">Session Schedule Day</label>
+                <div class="col-lg-8 form-inline">
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Monday-${sessionIndex}" type="checkbox" value="Monday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Monday-${sessionIndex}">Monday</label>
+                    </div>
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Tuesday-${sessionIndex}" type="checkbox" value="Tuesday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Tuesday-${sessionIndex}">Tuesday</label>
+                    </div>
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Wednesday-${sessionIndex}" type="checkbox" value="Wednesday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Wednesday-${sessionIndex}">Wednesday</label>
+                    </div>
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Thursday-${sessionIndex}" type="checkbox" value="Thursday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Thursday-${sessionIndex}">Thursday</label>
+                    </div>
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Friday-${sessionIndex}" type="checkbox" value="Friday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Friday-${sessionIndex}">Friday</label>
+                    </div>
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Saturday-${sessionIndex}" type="checkbox" value="Saturday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Saturday-${sessionIndex}">Saturday</label>
+                    </div>
+                    <div class="checkbox checkbox-primary mr-3 mb-2">
+                        <input id="Sunday-${sessionIndex}" type="checkbox" value="Sunday" name="session_multiple_days[${sessionIndex}][]">
+                        <label for="Sunday-${sessionIndex}">Sunday</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-2 mb-3 session-actions">
+                <button type="button" class="btn btn-danger" onclick="deleteSessionBlock(this)">Delete Session</button>
+                <button type="button" class="btn btn-primary" onclick="addSessionBlock()">Add Session</button>
+            </div>
+        `;
+    
+        // Append the new session block to the container
+        sessionContainer.appendChild(newSessionBlock);
+    }
+    
+    function deleteSessionBlock(button) {
+        const sessionBlock = button.closest('.session-block');
+        const sessionContainer = document.getElementById('session-container');
+        const mainAddButton = document.getElementById('main-add-button');
+    
+        // Remove the session block
+        if (sessionBlock) {
+            sessionBlock.remove();
+        }
+    
+        // If no other session blocks exist, show the main Add Session button
+        if (sessionContainer.children.length === 0) {
+            mainAddButton.style.display = 'inline-block';
+        }
+    }
+    
+</script>
+
+
+
+<script>
+    
+    $('#instructorDropdown').on('change', function () {
+        if (this.value) {
+            $.ajax({
+                type: "GET",
+                url: "/yoshimitsujpinfy/get_relationship_manager/" + this.value + "/",
+                success: function (response) {
+                    if (response.message === "No relationship manager assigned") {
+                        // Show the dropdown to select a relationship manager
+                        $('#batchname').hide(); // Hide the input field
+                        $('#batchid').val(''); // Clear hidden field
+                        $('#relationshipManagerSelect').empty();
+                        $('#relationshipManagerSelect').append('<option value="">Select Relationship Manager</option>');
+    
+                        response.managers.forEach(function (manager) {
+                            $('#relationshipManagerSelect').append(
+                                `<option value="${manager.id}">${manager.email}</option>`
+                            );
+                        });
+    
+                        $('#relationshipManagerSelect').show();
+                        $('#relationshipManagerSelect').prop('disabled', false);
+                    } else {
+                        // Show the input field with the assigned relationship manager's details
+                        $('#batchname').val(response.email).show();
+                        $('#batchid').val(response.id); // Set hidden field with assigned manager's ID
+                        $('#relationshipManagerSelect').hide(); // Hide the dropdown
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching the relationship manager: ", error);
+                }
+            });
+        } else {
+            // Reset fields when no instructor is selected
+            $('#batchname').val("Please select instructor first").show();
+            $('#batchid').val('');
+            $('#relationshipManagerSelect').hide();
+        }
+    });
+    
+    
+</script>
+{% endblock %}
